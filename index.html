@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gift Card Surprise 🎁</title>
+<style>
+*{box-sizing:border-box}
+body{
+  margin:0; min-height:100vh; display:flex; align-items:center; justify-content:center;
+  font-family:Arial,Helvetica,sans-serif;
+  background:linear-gradient(135deg,#eef2f7,#dfe7f1);
+  color:#111;
+}
+.card{
+  width:min(92%,520px); background:#fff; border-radius:18px;
+  padding:34px 28px; text-align:center;
+  box-shadow:0 15px 45px rgba(0,0,0,.15);
+}
+.logo{font-size:30px;font-weight:800;margin-bottom:20px}
+.logo span{color:#ff9900}
+.gift{font-size:72px;margin:8px}
+h1{margin:10px 0;font-size:28px}
+.amount{font-size:38px;font-weight:800;margin:15px 0}
+p{color:#555;line-height:1.5}
+button{
+  border:0;border-radius:10px;padding:15px 28px;font-size:17px;
+  font-weight:700;cursor:pointer;background:#ffd814;
+  box-shadow:0 3px 8px rgba(0,0,0,.15);
+}
+button:hover{transform:translateY(-1px)}
+#loading,#reveal{display:none}
+video{width:100%;border-radius:12px;margin-top:18px;background:#000}
+.small{font-size:12px;color:#888;margin-top:18px}
+</style>
+</head>
+<body>
+<div class="card" id="gift">
+  <div class="logo">amazon<span>★</span></div>
+  <div class="gift">🎁</div>
+  <h1>You've Got a Gift Card!</h1>
+  <div class="amount">₹5,000</div>
+  <p>Congratulations! Your surprise gift card is ready to be claimed.</p>
+  <button onclick="claim()">Claim Your Gift Card</button>
+  <div class="small">Unofficial prank page — no payment or login information is collected.</div>
+</div>
+
+<div class="card" id="loading">
+  <div class="gift">🎁</div>
+  <h1>Preparing your gift...</h1>
+  <p>Please wait a moment 👀</p>
+</div>
+
+<div class="card" id="reveal">
+  <h1>🎉 SURPRISE!</h1>
+  <video id="video" controls playsinline>
+    <source src="reveal.mp4" type="video/mp4">
+  </video>
+</div>
+
+<script>
+function claim(){
+  document.getElementById("gift").style.display="none";
+  document.getElementById("loading").style.display="block";
+  setTimeout(()=>{
+    document.getElementById("loading").style.display="none";
+    document.getElementById("reveal").style.display="block";
+    const v=document.getElementById("video");
+    v.play().catch(()=>{});
+  },1800);
+}
+</script>
+</body>
+</html>
